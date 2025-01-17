@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Face Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+  <header>
+    <h1>Real-Time Face Recognition</h1>
+  </header>
+
+  <main>
+    <section class="instructions">
+      <p>
+        Welcome! This web application captures frames from your webcam, sends them to the server for face detection and recognition, and displays the annotated results on top of your live video feed.
+      </p>
+      <p>
+        To add (or "tag") yourself or someone else, position a face clearly in front of the camera, then click the "Tag This Face" button and type a name. The system will store this embedding and label. Next time this person appears, their name should show up (provided recognition is confident enough).
+      </p>
+      <p>
+        Please ensure you grant camera access in your browser if prompted. For best results, use a well-lit environment and face the camera directly.
+      </p>
+    </section>
+
+    <section id="video-section">
+      <div id="video-container">
+        <!-- Live webcam feed -->
+        <video id="video-feed" autoplay muted playsinline></video>
+        <!-- Overlay canvas for drawing annotations -->
+        <canvas id="overlay-canvas"></canvas>
+      </div>
+      <button id="tag-button" class="tag-btn">Tag This Face</button>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-text">
+      &copy; 2023 YourProject. Built with Flask, Socket.IO, YOLO, and DeepFace.
+    </p>
+  </footer>
+
+  <!-- Hidden canvas for capturing frames -->
+  <canvas id="capture-canvas"></canvas>
+
+  <!-- Socket.IO + Custom Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

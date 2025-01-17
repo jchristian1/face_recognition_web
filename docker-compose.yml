@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    container_name: face_rec_db
+    environment:
+      - POSTGRES_USER=faceuser
+      - POSTGRES_PASSWORD=facepass
+      - POSTGRES_DB=facerec
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - face_net
+
+  web:
+    build: .
+    container_name: face_rec_web
+    command: python run.py
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://faceuser:facepass@db:5432/facerec
+      - SECRET_KEY=super-secret-key
+    networks:
+      - face_net
+
+volumes:
+  db_data:
+
+networks:
+  face_net:
+    driver: bridge

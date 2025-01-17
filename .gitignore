@@ -1,0 +1,28 @@
+# Exclude virtual environment folders
+venv/
+vision/
+web_vision/
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database files
+*.db
+*.sqlite3
+
+# Logs and temporary files
+*.log
+
+# Known faces images (if generated at runtime)
+#known_faces/
+
+# Migration files (if you consider these generated, otherwise you can include them)
+migrations/
+
+# Environment files (e.g. containing secrets)
+.env
+
+# Docker-related generated files
+docker-compose.override.yml
