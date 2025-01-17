@@ -11,7 +11,8 @@ def create_app():
     app = Flask(__name__, template_folder="templates", static_folder="static")
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-key')
 
-    # Create database tables if they don't exist
+    # Create database tables if they don't exist.
+    # In production on Render, this will use the DATABASE_URL you set.
     Base.metadata.create_all(bind=engine)
 
     # Register the blueprint for routes
